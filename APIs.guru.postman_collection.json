@@ -1,0 +1,776 @@
+{
+	"info": {
+		"_postman_id": "36e7ba2c-8016-4603-afe3-1cb7a0d68ee7",
+		"name": "APIs.guru",
+		"description": "Wikipedia for Web APIs. Repository of API definitions in OpenAPI format.\n**Warning**: If you want to be notified about changes in advance please join our [Slack channel](https://join.slack.com/t/mermade/shared_invite/zt-g78g7xir-MLE_CTCcXCdfJfG3CJe9qA).\nClient sample: [[Demo]](https://apis.guru/simple-ui) [[Repo]](https://github.com/APIs-guru/simple-ui)\n\n\nContact Support:\n Name: APIs.guru\n Email: mike.ralphson@gmail.com",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20842590"
+	},
+	"item": [
+		{
+			"name": "providers.json",
+			"item": [
+				{
+					"name": "List all providers",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"const jsonData = pm.response.json();\r",
+									"pm.test(\"Test data type of the response\", () => {\r",
+									"  pm.expect(jsonData).to.be.an(\"object\");\r",
+									"  pm.expect(jsonData.data).to.be.an(\"array\")\r",
+									"  var arrayLength = jsonData.data.length;\r",
+									"pm.expect(arrayLength).to.be.equal(677);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Array length should be 677\", () => {\r",
+									"  var arrayLength = jsonData.data.length;\r",
+									"pm.expect(arrayLength).to.be.equal(677);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/providers.json",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"providers.json"
+							]
+						},
+						"description": "List all the providers in the directory\n"
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/providers.json",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"providers.json"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"data\": [\n    \"<string>\"\n  ]\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "{provider}.json",
+			"item": [
+				{
+					"name": "List all APIs for a particular provider",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 2000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name should have an OK string\", function () {\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"const jsonData = pm.response.json();\r",
+									"pm.test(\"Test data type of the response\", () => {\r",
+									"  pm.expect(jsonData).to.be.an(\"object\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/{{provider}}.json",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"{{provider}}.json"
+							]
+						},
+						"description": "List all APIs in the directory for a particular providerName\nReturns links to the individual API entry for each API.\n"
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/{{provider}}.json",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"{{provider}}.json"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"eiusmod_e\": {\n    \"added\": \"<dateTime>\",\n    \"preferred\": \"<string>\",\n    \"versions\": {\n      \"dolor_d_2\": {\n        \"added\": \"<dateTime>\",\n        \"updated\": \"<dateTime>\",\n        \"swaggerUrl\": \"<string>\",\n        \"swaggerYamlUrl\": \"<string>\",\n        \"info\": {\n          \"eiusmod_049\": \"in consectetur labore\"\n        },\n        \"openapiVer\": \"<string>\",\n        \"link\": \"<string>\",\n        \"externalDocs\": {\n          \"dolore_6\": 27018049.938732028\n        }\n      },\n      \"et_97\": {\n        \"added\": \"<dateTime>\",\n        \"updated\": \"<dateTime>\",\n        \"swaggerUrl\": \"<string>\",\n        \"swaggerYamlUrl\": \"<string>\",\n        \"info\": {\n          \"cillum_037\": \"eu proident Duis consectetur\"\n        },\n        \"openapiVer\": \"<string>\",\n        \"link\": \"<string>\",\n        \"externalDocs\": {\n          \"sintac\": \"ad\"\n        }\n      }\n    }\n  },\n  \"irure60\": {\n    \"added\": \"<dateTime>\",\n    \"preferred\": \"<string>\",\n    \"versions\": {\n      \"esse_0a\": {\n        \"added\": \"<dateTime>\",\n        \"updated\": \"<dateTime>\",\n        \"swaggerUrl\": \"<string>\",\n        \"swaggerYamlUrl\": \"<string>\",\n        \"info\": {\n          \"nostrud_a\": \"fugiat occaecat\"\n        },\n        \"openapiVer\": \"<string>\",\n        \"link\": \"<string>\",\n        \"externalDocs\": {\n          \"consectetur687\": false\n        }\n      }\n    }\n  },\n  \"sit04c\": {\n    \"added\": \"<dateTime>\",\n    \"preferred\": \"<string>\",\n    \"versions\": {\n      \"sit_dd\": {\n        \"added\": \"<dateTime>\",\n        \"updated\": \"<dateTime>\",\n        \"swaggerUrl\": \"<string>\",\n        \"swaggerYamlUrl\": \"<string>\",\n        \"info\": {\n          \"sunt56\": -80119417.96495186\n        },\n        \"openapiVer\": \"<string>\",\n        \"link\": \"<string>\",\n        \"externalDocs\": {\n          \"veniame\": -53379475\n        }\n      },\n      \"adipisicing_3a\": {\n        \"added\": \"<dateTime>\",\n        \"updated\": \"<dateTime>\",\n        \"swaggerUrl\": \"<string>\",\n        \"swaggerYamlUrl\": \"<string>\",\n        \"info\": {\n          \"laboris_324\": 68854875.8494305\n        },\n        \"openapiVer\": \"<string>\",\n        \"link\": \"<string>\",\n        \"externalDocs\": {\n          \"officia5_\": 93207148\n        }\n      }\n    }\n  },\n  \"fugiat3f_\": {\n    \"added\": \"<dateTime>\",\n    \"preferred\": \"<string>\",\n    \"versions\": {\n      \"dolorecf\": {\n        \"added\": \"<dateTime>\",\n        \"updated\": \"<dateTime>\",\n        \"swaggerUrl\": \"<string>\",\n        \"swaggerYamlUrl\": \"<string>\",\n        \"info\": {\n          \"nisi7d\": -98785396.93386292\n        },\n        \"openapiVer\": \"<string>\",\n        \"link\": \"<string>\",\n        \"externalDocs\": {\n          \"aute508\": -40414221\n        }\n      },\n      \"irureace\": {\n        \"added\": \"<dateTime>\",\n        \"updated\": \"<dateTime>\",\n        \"swaggerUrl\": \"<string>\",\n        \"swaggerYamlUrl\": \"<string>\",\n        \"info\": {\n          \"ex_1\": \"cupidatat cillu\"\n        },\n        \"openapiVer\": \"<string>\",\n        \"link\": \"<string>\",\n        \"externalDocs\": {\n          \"Ut_d\": -28675595.338764206\n        }\n      },\n      \"ex_e2\": {\n        \"added\": \"<dateTime>\",\n        \"updated\": \"<dateTime>\",\n        \"swaggerUrl\": \"<string>\",\n        \"swaggerYamlUrl\": \"<string>\",\n        \"info\": {\n          \"sit0b_\": -31708801\n        },\n        \"openapiVer\": \"<string>\",\n        \"link\": \"<string>\",\n        \"externalDocs\": {\n          \"aliquac\": \"dolore cillum magna deserunt dolore\"\n        }\n      }\n    }\n  },\n  \"commodof9e\": {\n    \"added\": \"<dateTime>\",\n    \"preferred\": \"<string>\",\n    \"versions\": {\n      \"dolore_f_\": {\n        \"added\": \"<dateTime>\",\n        \"updated\": \"<dateTime>\",\n        \"swaggerUrl\": \"<string>\",\n        \"swaggerYamlUrl\": \"<string>\",\n        \"info\": {\n          \"sedaa3\": true\n        },\n        \"openapiVer\": \"<string>\",\n        \"link\": \"<string>\",\n        \"externalDocs\": {\n          \"ipsum_d\": 28687019.31730908\n        }\n      }\n    }\n  }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "{provider}",
+			"item": [
+				{
+					"name": "services.json",
+					"item": [
+						{
+							"name": "List all serviceNames for a particular provider",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response time is less than 2000ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Status code name should have an OK string\", function () {\r",
+											"    pm.response.to.have.status(\"OK\");\r",
+											"});\r",
+											"\r",
+											"const jsonData = pm.response.json();\r",
+											"pm.test(\"Test data type of the response\", () => {\r",
+											"  pm.expect(jsonData).to.be.an(\"object\");\r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/:provider/services.json",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										":provider",
+										"services.json"
+									],
+									"variable": [
+										{
+											"key": "provider",
+											"value": "{{provider}}"
+										}
+									]
+								},
+								"description": "List all serviceNames in the directory for a particular providerName\n"
+							},
+							"response": [
+								{
+									"name": "OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/:provider/services.json",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												":provider",
+												"services.json"
+											],
+											"variable": [
+												{
+													"key": "provider",
+													"value": "{{provider}}"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Content-Length",
+											"value": "26"
+										},
+										{
+											"key": "Server",
+											"value": "GitHub.com"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "x-origin-cache",
+											"value": "HIT"
+										},
+										{
+											"key": "Last-Modified",
+											"value": "Sat, 22 Apr 2023 00:59:21 GMT"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "ETag",
+											"value": "\"64433169-1a\""
+										},
+										{
+											"key": "expires",
+											"value": "Thu, 10 Aug 2023 16:34:54 GMT"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "max-age=600"
+										},
+										{
+											"key": "x-proxy-cache",
+											"value": "MISS"
+										},
+										{
+											"key": "X-GitHub-Request-Id",
+											"value": "18DC:0969:20E761F:21D13A1:64D50F55"
+										},
+										{
+											"key": "Accept-Ranges",
+											"value": "bytes"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 10 Aug 2023 16:25:57 GMT"
+										},
+										{
+											"key": "Via",
+											"value": "1.1 varnish"
+										},
+										{
+											"key": "Age",
+											"value": "25"
+										},
+										{
+											"key": "X-Served-By",
+											"value": "cache-ams21060-AMS"
+										},
+										{
+											"key": "X-Cache",
+											"value": "HIT"
+										},
+										{
+											"key": "X-Cache-Hits",
+											"value": "2"
+										},
+										{
+											"key": "X-Timer",
+											"value": "S1691684758.989880,VS0,VE1"
+										},
+										{
+											"key": "Vary",
+											"value": "Accept-Encoding"
+										},
+										{
+											"key": "X-Fastly-Request-ID",
+											"value": "243113ce103f2d310cec4d62fc194602d8eb2cec"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": [\n        \"\"\n    ]\n}"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "specs",
+			"item": [
+				{
+					"name": "{provider}",
+					"item": [
+						{
+							"name": "{api}.json",
+							"item": [
+								{
+									"name": "Retrieve one version of a particular API",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/specs/:provider/{{api}}.json",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"specs",
+												":provider",
+												"{{api}}.json"
+											],
+											"variable": [
+												{
+													"key": "provider",
+													"value": "{{provider}}"
+												}
+											]
+										},
+										"description": "Returns the API entry for one specific version of an API where there is no serviceName."
+									},
+									"response": [
+										{
+											"name": "OK",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/specs/:provider/{{api}}.json",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"specs",
+														":provider",
+														"{{api}}.json"
+													],
+													"variable": [
+														{
+															"key": "provider"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"body": "{\n  \"added\": \"<dateTime>\",\n  \"preferred\": \"<string>\",\n  \"versions\": {\n    \"Loremb9\": {\n      \"added\": \"<dateTime>\",\n      \"updated\": \"<dateTime>\",\n      \"swaggerUrl\": \"<string>\",\n      \"swaggerYamlUrl\": \"<string>\",\n      \"info\": {\n        \"adipisicing4\": 78059537.34502515\n      },\n      \"openapiVer\": \"<string>\",\n      \"link\": \"<string>\",\n      \"externalDocs\": {\n        \"cillum_4\": \"voluptate cupidatat\"\n      }\n    },\n    \"fugiat_b\": {\n      \"added\": \"<dateTime>\",\n      \"updated\": \"<dateTime>\",\n      \"swaggerUrl\": \"<string>\",\n      \"swaggerYamlUrl\": \"<string>\",\n      \"info\": {\n        \"ea866\": true\n      },\n      \"openapiVer\": \"<string>\",\n      \"link\": \"<string>\",\n      \"externalDocs\": {\n        \"in1\": false\n      }\n    },\n    \"tempor_7f\": {\n      \"added\": \"<dateTime>\",\n      \"updated\": \"<dateTime>\",\n      \"swaggerUrl\": \"<string>\",\n      \"swaggerYamlUrl\": \"<string>\",\n      \"info\": {\n        \"enimc\": \"ullamco do\"\n      },\n      \"openapiVer\": \"<string>\",\n      \"link\": \"<string>\",\n      \"externalDocs\": {\n        \"et_2_d\": -4725183.193458006\n      }\n    }\n  }\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "{service}",
+							"item": [
+								{
+									"name": "{api}.json",
+									"item": [
+										{
+											"name": "Retrieve one version of a particular API with a serviceName.",
+											"request": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/specs/:provider/:service/{{api}}.json",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"specs",
+														":provider",
+														":service",
+														"{{api}}.json"
+													],
+													"variable": [
+														{
+															"key": "provider",
+															"value": "{{provider}}"
+														},
+														{
+															"key": "service",
+															"value": "aiception.com"
+														}
+													]
+												},
+												"description": "Returns the API entry for one specific version of an API where there is a serviceName."
+											},
+											"response": [
+												{
+													"name": "OK",
+													"originalRequest": {
+														"method": "GET",
+														"header": [
+															{
+																"key": "Accept",
+																"value": "application/json"
+															}
+														],
+														"url": {
+															"raw": "{{baseUrl}}/specs/:provider/:service/{{api}}.json",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"specs",
+																":provider",
+																":service",
+																"{{api}}.json"
+															],
+															"variable": [
+																{
+																	"key": "provider"
+																},
+																{
+																	"key": "service"
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "json",
+													"header": [
+														{
+															"key": "Content-Type",
+															"value": "application/json"
+														}
+													],
+													"cookie": [],
+													"body": "{\n  \"added\": \"<dateTime>\",\n  \"preferred\": \"<string>\",\n  \"versions\": {\n    \"Loremb9\": {\n      \"added\": \"<dateTime>\",\n      \"updated\": \"<dateTime>\",\n      \"swaggerUrl\": \"<string>\",\n      \"swaggerYamlUrl\": \"<string>\",\n      \"info\": {\n        \"adipisicing4\": 78059537.34502515\n      },\n      \"openapiVer\": \"<string>\",\n      \"link\": \"<string>\",\n      \"externalDocs\": {\n        \"cillum_4\": \"voluptate cupidatat\"\n      }\n    },\n    \"fugiat_b\": {\n      \"added\": \"<dateTime>\",\n      \"updated\": \"<dateTime>\",\n      \"swaggerUrl\": \"<string>\",\n      \"swaggerYamlUrl\": \"<string>\",\n      \"info\": {\n        \"ea866\": true\n      },\n      \"openapiVer\": \"<string>\",\n      \"link\": \"<string>\",\n      \"externalDocs\": {\n        \"in1\": false\n      }\n    },\n    \"tempor_7f\": {\n      \"added\": \"<dateTime>\",\n      \"updated\": \"<dateTime>\",\n      \"swaggerUrl\": \"<string>\",\n      \"swaggerYamlUrl\": \"<string>\",\n      \"info\": {\n        \"enimc\": \"ullamco do\"\n      },\n      \"openapiVer\": \"<string>\",\n      \"link\": \"<string>\",\n      \"externalDocs\": {\n        \"et_2_d\": -4725183.193458006\n      }\n    }\n  }\n}"
+												}
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "list.json",
+			"item": [
+				{
+					"name": "List all APIs",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 2000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name should have an OK string\", function () {\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"const jsonData = pm.response.json();\r",
+									"pm.test(\"Test data type of the response\", () => {\r",
+									"  pm.expect(jsonData).to.be.an(\"object\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/list.json",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"list.json"
+							]
+						},
+						"description": "List all APIs in the directory.\nReturns links to the OpenAPI definitions for each API in the directory.\nIf API exist in multiple versions `preferred` one is explicitly marked.\nSome basic info from the OpenAPI definition is cached inside each object.\nThis allows you to generate some simple views without needing to fetch the OpenAPI definition for each API.\n"
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/list.json",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"list.json"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"eiusmod_e\": {\n    \"added\": \"<dateTime>\",\n    \"preferred\": \"<string>\",\n    \"versions\": {\n      \"dolor_d_2\": {\n        \"added\": \"<dateTime>\",\n        \"updated\": \"<dateTime>\",\n        \"swaggerUrl\": \"<string>\",\n        \"swaggerYamlUrl\": \"<string>\",\n        \"info\": {\n          \"eiusmod_049\": \"in consectetur labore\"\n        },\n        \"openapiVer\": \"<string>\",\n        \"link\": \"<string>\",\n        \"externalDocs\": {\n          \"dolore_6\": 27018049.938732028\n        }\n      },\n      \"et_97\": {\n        \"added\": \"<dateTime>\",\n        \"updated\": \"<dateTime>\",\n        \"swaggerUrl\": \"<string>\",\n        \"swaggerYamlUrl\": \"<string>\",\n        \"info\": {\n          \"cillum_037\": \"eu proident Duis consectetur\"\n        },\n        \"openapiVer\": \"<string>\",\n        \"link\": \"<string>\",\n        \"externalDocs\": {\n          \"sintac\": \"ad\"\n        }\n      }\n    }\n  },\n  \"irure60\": {\n    \"added\": \"<dateTime>\",\n    \"preferred\": \"<string>\",\n    \"versions\": {\n      \"esse_0a\": {\n        \"added\": \"<dateTime>\",\n        \"updated\": \"<dateTime>\",\n        \"swaggerUrl\": \"<string>\",\n        \"swaggerYamlUrl\": \"<string>\",\n        \"info\": {\n          \"nostrud_a\": \"fugiat occaecat\"\n        },\n        \"openapiVer\": \"<string>\",\n        \"link\": \"<string>\",\n        \"externalDocs\": {\n          \"consectetur687\": false\n        }\n      }\n    }\n  },\n  \"sit04c\": {\n    \"added\": \"<dateTime>\",\n    \"preferred\": \"<string>\",\n    \"versions\": {\n      \"sit_dd\": {\n        \"added\": \"<dateTime>\",\n        \"updated\": \"<dateTime>\",\n        \"swaggerUrl\": \"<string>\",\n        \"swaggerYamlUrl\": \"<string>\",\n        \"info\": {\n          \"sunt56\": -80119417.96495186\n        },\n        \"openapiVer\": \"<string>\",\n        \"link\": \"<string>\",\n        \"externalDocs\": {\n          \"veniame\": -53379475\n        }\n      },\n      \"adipisicing_3a\": {\n        \"added\": \"<dateTime>\",\n        \"updated\": \"<dateTime>\",\n        \"swaggerUrl\": \"<string>\",\n        \"swaggerYamlUrl\": \"<string>\",\n        \"info\": {\n          \"laboris_324\": 68854875.8494305\n        },\n        \"openapiVer\": \"<string>\",\n        \"link\": \"<string>\",\n        \"externalDocs\": {\n          \"officia5_\": 93207148\n        }\n      }\n    }\n  },\n  \"fugiat3f_\": {\n    \"added\": \"<dateTime>\",\n    \"preferred\": \"<string>\",\n    \"versions\": {\n      \"dolorecf\": {\n        \"added\": \"<dateTime>\",\n        \"updated\": \"<dateTime>\",\n        \"swaggerUrl\": \"<string>\",\n        \"swaggerYamlUrl\": \"<string>\",\n        \"info\": {\n          \"nisi7d\": -98785396.93386292\n        },\n        \"openapiVer\": \"<string>\",\n        \"link\": \"<string>\",\n        \"externalDocs\": {\n          \"aute508\": -40414221\n        }\n      },\n      \"irureace\": {\n        \"added\": \"<dateTime>\",\n        \"updated\": \"<dateTime>\",\n        \"swaggerUrl\": \"<string>\",\n        \"swaggerYamlUrl\": \"<string>\",\n        \"info\": {\n          \"ex_1\": \"cupidatat cillu\"\n        },\n        \"openapiVer\": \"<string>\",\n        \"link\": \"<string>\",\n        \"externalDocs\": {\n          \"Ut_d\": -28675595.338764206\n        }\n      },\n      \"ex_e2\": {\n        \"added\": \"<dateTime>\",\n        \"updated\": \"<dateTime>\",\n        \"swaggerUrl\": \"<string>\",\n        \"swaggerYamlUrl\": \"<string>\",\n        \"info\": {\n          \"sit0b_\": -31708801\n        },\n        \"openapiVer\": \"<string>\",\n        \"link\": \"<string>\",\n        \"externalDocs\": {\n          \"aliquac\": \"dolore cillum magna deserunt dolore\"\n        }\n      }\n    }\n  },\n  \"commodof9e\": {\n    \"added\": \"<dateTime>\",\n    \"preferred\": \"<string>\",\n    \"versions\": {\n      \"dolore_f_\": {\n        \"added\": \"<dateTime>\",\n        \"updated\": \"<dateTime>\",\n        \"swaggerUrl\": \"<string>\",\n        \"swaggerYamlUrl\": \"<string>\",\n        \"info\": {\n          \"sedaa3\": true\n        },\n        \"openapiVer\": \"<string>\",\n        \"link\": \"<string>\",\n        \"externalDocs\": {\n          \"ipsum_d\": 28687019.31730908\n        }\n      }\n    }\n  }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "metrics.json",
+			"item": [
+				{
+					"name": "Get basic metrics",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 2000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name should have an OK string\", function () {\r",
+									"    pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"const jsonData = pm.response.json();\r",
+									"pm.test(\"Test data type of the response\", () => {\r",
+									"  pm.expect(jsonData).to.be.an(\"object\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/metrics.json",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"metrics.json"
+							]
+						},
+						"description": "Some basic metrics for the entire directory.\nJust stunning numbers to put on a front page and are intended purely for WoW effect :)\n"
+					},
+					"response": [
+						{
+							"name": "OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/metrics.json",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"metrics.json"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"numSpecs\": \"<integer>\",\n  \"numAPIs\": \"<integer>\",\n  \"numEndpoints\": \"<integer>\",\n  \"unreachable\": \"<integer>\",\n  \"invalid\": \"<integer>\",\n  \"unofficial\": \"<integer>\",\n  \"fixes\": \"<integer>\",\n  \"fixedPct\": \"<integer>\",\n  \"stars\": \"<integer>\",\n  \"issues\": \"<integer>\",\n  \"thisWeek\": {\n    \"added\": \"<integer>\",\n    \"updated\": \"<integer>\"\n  },\n  \"numDrivers\": \"<integer>\",\n  \"numProviders\": \"<integer>\"\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://api.apis.guru/v2"
+		},
+		{
+			"key": "provider",
+			"value": "aiception.com"
+		},
+		{
+			"key": "api",
+			"value": "https://api.apis.guru/v2/specs/aiception.com/1.0.0/swagger.yaml"
+		},
+		{
+			"key": "1password.com",
+			"value": "",
+			"type": "string",
+			"disabled": true
+		}
+	]
+}
